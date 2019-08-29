@@ -3,7 +3,10 @@ const bodyParser = require('body-parser');
 const app = express();
 const request = require('request');
 const apiKey = '5d5dd6f4d3b4a64d123e349e2e36b4c6';
-
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 8000;
+}
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({
   extended: true
@@ -18,8 +21,8 @@ app.get('/', function(req, res) {
   });
 });
 
-app.listen(5000, function() {
-  console.log('Example app listening on port 5000!');
+app.listen(port, function() {
+  console.log(`Example app listening on port ${port}!`);
 });
 
 app.post('/', function(req, res) {
