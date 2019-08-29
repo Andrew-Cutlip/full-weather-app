@@ -4,18 +4,22 @@ const app = express();
 const request = require('request');
 const apiKey = '5d5dd6f4d3b4a64d123e349e2e36b4c6';
 
-app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({
   extended: true
 }));
+app.set('view engine', 'ejs');
+
 
 app.get('/', function(req, res) {
-  res.render('index');
+  res.render('index', {
+    weather: null,
+    error: null
+  });
 });
 
-app.listen(3000, function() {
-  console.log('Example app listening on port 3000!');
+app.listen(5000, function() {
+  console.log('Example app listening on port 5000!');
 });
 
 app.post('/', function(req, res) {
